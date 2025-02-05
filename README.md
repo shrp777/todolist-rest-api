@@ -38,7 +38,7 @@ api
 │   │   └── task.py
 │   └── routers
 │       ├── __init__.py
-│       └── pizza_router.py
+│       └── task_router.py
 └── requirements.txt
 ```
 
@@ -96,95 +96,13 @@ L'activation de la ligne `- ./db/data:/var/lib/postgresql/data/` permet de conse
 
 ## Routes de l'API
 
-### Test de l'API avec Bruno ou Postman
+### Test de l'API avec Bruno
 
-Les collections de requêtes HTTP pour tester l'API sont disponibles dans ./Bruno et ./Postman.
+Les collections de requêtes HTTP pour tester l'API sont disponibles dans ./Todolist API Python
 
 ### Documentation Swagger générée automatiquement par FastAPI
 
 <http://localhost:8080/docs>
-
-### Endpoint pizzas
-
-#### Lecture de tous les items
-
-```sh
-curl --request GET \
-  --url http://localhost:8080/pizzas
-```
-
-```http
-GET /pizzas HTTP/1.1
-Host: localhost:8080
-```
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Margherita",
-    "created_at": "2024-12-12T13:25:25.162192",
-    "updated_at": null
-  }
-]
-```
-
-#### Lecture d'un item sélectionné par son id
-
-```sh
-curl --request GET \
-  --url http://localhost:8080/pizzas/1
-```
-
-```http
-GET /pizzas/1 HTTP/1.1
-Host: localhost:8080
-```
-
-```json
-{
-  "id": 1,
-  "name": "Margherita",
-  "created_at": "2024-12-12T13:25:25.162192",
-  "updated_at": null
-}
-```
-
-## Adminer (interface web d'administration de base de données)
-
-Pour des raisons de sécurité, __désactiver ce service en production__.
-
-<http://localhost:8181>
-
-- Interface d'administration web [Adminer](http://localhost:8181/?pgsql=db&username=pizzas&db=pizzas&ns=public)
-- Sélectionner Système : __postgresql__
-- Serveur : __db__ (= nom du service Docker)
-- Utilisateur : voir valeur définie dans ./db/.env
-- Mot de passe : voir valeur définie dans ./db/.env
-- Base de données : voir valeur définie dans ./db/.env
-
-## Base de données PostgreSQL
-
-```SQL
-
-DROP TABLE IF EXISTS "pizzas";
-DROP SEQUENCE IF EXISTS pizzas_id_seq;
-CREATE SEQUENCE pizzas_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
-
-CREATE TABLE "public"."pizzas" (
-    "id" integer DEFAULT nextval('pizzas_id_seq') NOT NULL,
-    "name" character varying NOT NULL,
-    "created_at" timestamp NOT NULL,
-    "updated_at" timestamp,
-    CONSTRAINT "pizzas_name_key" UNIQUE ("name"),
-    CONSTRAINT "pizzas_pkey" PRIMARY KEY ("id")
-) WITH (oids = false);
-
-CREATE INDEX "ix_pizzas_id" ON "public"."pizzas" USING btree ("id");
-
-INSERT INTO "pizzas" ("id", "name", "created_at", "updated_at") VALUES
-(1, 'Margherita', '2024-12-12 13:25:25.162192', NULL);
-```
 
 --
 
