@@ -1,5 +1,7 @@
 # Docker + FastAPI (Python) + PostgreSQL
 
+![Todolist](./assets/todolist.png)
+
 Projet modèle pour la mise en place d'une __API REST__ avec le langage __Python__ et le framework __FastAPI__ (<https://fastapi.tiangolo.com/>) et Docker.
 
 Ce projet est fourni à des fins pédagogiques.
