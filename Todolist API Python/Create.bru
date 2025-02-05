@@ -1,0 +1,22 @@
+meta {
+  name: Create
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/tasks
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "content": "Lorem Ipsum",
+    "deadline": "2025-02-05"
+  }
+}
+
+assert {
+  res.status: eq 201
+}

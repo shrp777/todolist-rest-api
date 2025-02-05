@@ -1,0 +1,15 @@
+meta {
+  name: Get One by Id
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8080/tasks/4220867b-066e-45ce-a988-1e25f0c4fd5c
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
