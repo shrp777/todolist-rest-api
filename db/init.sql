@@ -1,2 +1,0 @@
---Par défaut l'ORM SQLAlchemy initialise les tables de données vides--
---Ce fichier SQL permet d'initialiser d'injecter des valeurs dans la base de données--

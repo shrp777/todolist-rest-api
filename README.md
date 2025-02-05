@@ -88,11 +88,8 @@ Les lignes suivantes du fichier __docker-compose.yml__ sont commentées par déf
 
 ```YAML
 # volumes:
-#   - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
 #   - ./db/data:/var/lib/postgresql/data/
 ```
-
-L'activation de la ligne `- ./db/init.sql:/docker-entrypoint-initdb.d/init.sql` permet d'injecter des données dans la base de données.
 
 L'activation de la ligne `- ./db/data:/var/lib/postgresql/data/` permet de conserver une sauvegarde du contenu de la base de données dans le dossier local ./db/data
 
