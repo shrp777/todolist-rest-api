@@ -1,4 +1,4 @@
-# Kanban API
+# REST API
 
 API REST développée avec FastAPI en Python.
 
