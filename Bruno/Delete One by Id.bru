@@ -1,0 +1,19 @@
+meta {
+  name: Delete One by Id
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://localhost:8080/tasks/16318220-06f5-465f-a171-e55599267a7a
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body.result: eq success
+  res.body.code: eq 200
+  res.body.detail: eq Task deleted
+  res.body: isJson
+}

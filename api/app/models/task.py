@@ -33,21 +33,21 @@ engine = create_engine(
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-# Enum for task status
 
-
-class StatusEnum(str, enum.Enum):
+class TaskStatus(str, enum.Enum):
+    # Enum pour définir le statut d'un utem Task
     todo = "todo"
     doing = "doing"
     done = "done"
 
 
 class TaskEntity(Base):
+    # Modèle pour définir la table de données tasks
     __tablename__ = "tasks"
 
     id = Column(String, primary_key=True, index=True)
     content = Column(String, nullable=False)
-    status = Column(Enum(StatusEnum), default=StatusEnum.todo)
+    status = Column(Enum(TaskStatus), default=TaskStatus.todo)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, nullable=True, onupdate=datetime.utcnow)
     completed_at = Column(DateTime, nullable=True)
@@ -56,23 +56,33 @@ class TaskEntity(Base):
 # Pydantic models
 
 
-class TaskCreate(BaseModel):
+class TaskStatusDTO(BaseModel):
+    # Modèle pour la mise à jour du statut d'un item Task
+    id: str
+    status: TaskStatus = TaskStatus.todo
+
+
+class TaskCreateDTO(BaseModel):
+    # Modèle pour la création d'un item Task
     content: str
-    status: StatusEnum = StatusEnum.todo
+    status: TaskStatus = TaskStatus.todo
     deadline: Optional[datetime] = None
 
 
-class TaskUpdate(BaseModel):
+class TaskUpdateDTO(BaseModel):
+    # Modèle pour la mise à jour d'un item Task
+    id: str
     content: Optional[str] = None
-    status: Optional[StatusEnum] = None
+    status: Optional[TaskStatus] = None
     completed_at: Optional[datetime] = None
     deadline: Optional[datetime] = None
 
 
-class TaskRead(BaseModel):
-    id: UUID
+class TaskReadDTO(BaseModel):
+    # Modèle pour la lecture d'un item Task
+    id: str
     content: str
-    status: StatusEnum
+    status: TaskStatus
     created_at: datetime
     completed_at: Optional[datetime]
     deadline: Optional[datetime]

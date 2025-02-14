@@ -1,0 +1,26 @@
+meta {
+  name: Patch One by Id
+  type: http
+  seq: 5
+}
+
+patch {
+  url: http://localhost:8080/tasks/16318220-06f5-465f-a171-e55599267a7a
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "16318220-06f5-465f-a171-e55599267a7a",
+    "status": "done"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.result: eq success
+  res.body.detail: eq Task success
+  res.body.task: isDefined
+  res.body: isJson
+}

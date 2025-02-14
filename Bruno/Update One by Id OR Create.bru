@@ -1,0 +1,31 @@
+meta {
+  name: Update One by Id OR Create
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/tasks/16318220-06f5-465f-a171-e55599267a7a
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "16318220-06f5-465f-a171-e55599267a7a",
+    "content": "Lorem Ipsum Dolor Sit Amet",
+    "status": "doing",
+    "created_at": "2025-02-05T21:19:34.028818",
+    "completed_at": null,
+    "deadline": null
+  }
+}
+
+assert {
+  res.status: in 200,201
+  res.body.code: in 200,201
+  res.body.task: isDefined
+  res.body.detail: in Task created, Task updated
+  res.body.result: eq success
+  res.body: isJson
+}

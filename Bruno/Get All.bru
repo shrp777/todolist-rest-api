@@ -1,7 +1,7 @@
 meta {
   name: Get All
   type: http
-  seq: 3
+  seq: 2
 }
 
 get {
@@ -12,4 +12,8 @@ get {
 
 assert {
   res.status: eq 200
+  res.body.code: eq 200
+  res.body.tasks: isArray
+  res.body.result: eq success
+  res.body: isJson
 }

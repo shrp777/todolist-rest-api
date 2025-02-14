@@ -19,8 +19,7 @@ services:
           target: /code
 
   db:
-    image: postgres:13-alpine
-    user: postgres
+    image: postgres
     env_file:
       - ./db/.env
     #volumes:

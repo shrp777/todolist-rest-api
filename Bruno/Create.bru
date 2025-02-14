@@ -1,7 +1,7 @@
 meta {
   name: Create
   type: http
-  seq: 2
+  seq: 1
 }
 
 post {
@@ -19,4 +19,10 @@ body:json {
 
 assert {
   res.status: eq 201
+  res.body.code: eq 201
+  res.body: isJson
+  res.body.detail: eq Task created
+  res.body.task: isDefined
+  res.body.task.status: eq todo
+  res.body.result: eq success
 }

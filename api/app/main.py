@@ -9,7 +9,7 @@ from starlette.responses import Response
 
 from pydantic import ValidationError
 
-from .routers import task_router
+from .routers import tasks
 
 app = FastAPI()
 
@@ -26,7 +26,7 @@ app.add_middleware(
 )
 
 
-app.include_router(task_router.router)
+app.include_router(tasks.router)
 
 
 @app.exception_handler(RequestValidationError)
