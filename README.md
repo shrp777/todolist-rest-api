@@ -1,4 +1,6 @@
-# Docker + FastAPI (Python) + PostgreSQL
+# Todolist API REST
+
+__API REST__ pour l'application cross-platforms Flutter (<https://github.com/shrp777/todolist-flutter>).
 
 ![Todolist](./assets/todolist.png)
 
@@ -7,6 +9,8 @@ Projet modèle pour la mise en place d'une __API REST__ avec le langage __Python
 Ce projet est fourni à des fins pédagogiques.
 
 ## Stack technologique
+
+Docker + FastAPI (Python) + PostgreSQL
 
 - Langage de programmation : Python (3.13.1)
 - Framework : FastAPI
